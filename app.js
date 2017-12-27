@@ -1,8 +1,10 @@
 var request = require('request')
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 3000
 
+app.use(cors())
 // your application requests authorization
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
