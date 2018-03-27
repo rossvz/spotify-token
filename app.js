@@ -3,13 +3,14 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 3002
+const SECRET = process.env.SPOTIFY
 
 app.use(cors())
 // your application requests authorization
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
-    'Authorization': 'Basic NGFkNzkzNTlmMzk2NDA5ZWIyMzY2ZmZhZGIxMGZlOGI6MTVhOGM3MWFjOTU0NDk5MTg5OTM0ZjlhMDgzZmJjYzQ='
+    'Authorization': `Basic ${SECRET}`
   },
   form: {
     grant_type: 'client_credentials'
