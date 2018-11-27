@@ -4,14 +4,14 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3002;
-const REPERTOIRE_SECRET = process.env.REPERTOIRE_SECRET;
+const REPERTOIRE_ENCODED = process.env.REPERTOIRE_ENCODED;
 
 app.use(cors());
 // your application requests authorization
 var authOptions = {
   url: "https://accounts.spotify.com/api/token",
   headers: {
-    Authorization: `Basic ${REPERTOIRE_SECRET}`
+    Authorization: `Basic ${REPERTOIRE_ENCODED}`
   },
   form: {
     grant_type: "client_credentials"
@@ -26,7 +26,6 @@ app.get("/authenticate", (req, res) => {
     return;
   }
   request.post(authOptions, function(error, response, body) {
-    console.log(response);
     if (!error && response.statusCode === 200) {
       // use the access token to access the Spotify Web API
       var token = body.access_token;
