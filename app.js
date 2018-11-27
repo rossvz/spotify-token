@@ -31,6 +31,11 @@ app.get('/authenticate', (req, res) => {
       var token = body.access_token
       res.send(token)
     }
+
+    if(error){
+      res.status(500)
+      res.send(error)
+    }
   })
 })
 
